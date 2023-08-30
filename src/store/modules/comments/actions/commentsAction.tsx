@@ -4,9 +4,9 @@ import {  COMMENT_CREATE_SUCCESS, COMMENT_CREATE_ERROR, GET_COMMENTS_SUCCESS, GE
 import  {history} from '../../../../history'
 
 
-export const fetchComments = id => {
+export const fetchComments = (id: string) => {
 
-  return async dispatch => {
+  return async (dispatch: Function) => {
 
     dispatch({ type: BEFORE_STATE_COMMENT }) 
 
@@ -19,15 +19,15 @@ export const fetchComments = id => {
           comments: res.data.response,
         }
       })
-    } catch(err) {
+    } catch(err: any) {
       dispatch({ type: GET_COMMENTS_ERROR, payload: err.response.data.error })
     }
   }
 }
 
 
-export const createComment = (details, commentSuccess) => {
-  return async (dispatch) => {
+export const createComment = (details: any, commentSuccess: Function) => {
+  return async (dispatch: Function) => {
     dispatch({ type: BEFORE_STATE_COMMENT }) 
     try {
       const res  = await axios.post(`${API_ROUTE}/comments/${details.post_id}`, details)
@@ -40,15 +40,15 @@ export const createComment = (details, commentSuccess) => {
       })
       commentSuccess()
       history.push(`/posts/${details.post_id}`);
-    } catch(err){
+    } catch(err: any){
       dispatch({ type: COMMENT_CREATE_ERROR, payload: err.response.data.error })
     }
   }
 }
 
-export const updateComment = (updateDetails, updateSuccess) => {
+export const updateComment = (updateDetails: any, updateSuccess: Function) => {
 
-  return async (dispatch) => {
+  return async (dispatch: Function) => {
 
     dispatch({ type: BEFORE_STATE_COMMENT }) 
 
@@ -61,15 +61,15 @@ export const updateComment = (updateDetails, updateSuccess) => {
         } 
       })
       updateSuccess()
-    } catch(err) {
+    } catch(err: any) {
       dispatch({ type: COMMENT_UPDATE_ERROR, payload: err.response.data.error })
     }
   }
 }
 
-export const deleteComment = (details, deleteSuccess) => {
+export const deleteComment = (details: any, deleteSuccess: Function) => {
 
-  return async (dispatch) => {
+  return async (dispatch: Function) => {
 
     dispatch({ type: BEFORE_STATE_COMMENT }) 
 
@@ -83,7 +83,7 @@ export const deleteComment = (details, deleteSuccess) => {
         } 
       })
       deleteSuccess()
-    } catch(err) {
+    } catch(err: any) {
       dispatch({ type: COMMENT_DELETE_ERROR, payload: err.response.data.error })
     }
   }

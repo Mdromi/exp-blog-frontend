@@ -1,13 +1,23 @@
-import { BEFORE_STATE_COMMENT, COMMENT_CREATE_SUCCESS, COMMENT_CREATE_ERROR, GET_COMMENTS_SUCCESS, GET_COMMENTS_ERROR, COMMENT_DELETE_SUCCESS, COMMENT_DELETE_ERROR, COMMENT_UPDATE_SUCCESS, COMMENT_UPDATE_ERROR } from '../commentTypes'
+// import { CommentActionTypes } from '../commentTypes'
+import {  COMMENT_CREATE_SUCCESS, COMMENT_CREATE_ERROR, GET_COMMENTS_SUCCESS, GET_COMMENTS_ERROR, COMMENT_DELETE_SUCCESS, COMMENT_DELETE_ERROR, COMMENT_UPDATE_SUCCESS, COMMENT_UPDATE_ERROR, BEFORE_STATE_COMMENT } from '../commentTypes'
 
-export const initState = {
-  commentItems : [],
-  isLoading: false,
-  commentSuccess: false
+export interface CommentState {
+  commentItems: any[];
+  isLoading: boolean;
+  commentsError: string | null;
+  commentSuccess: boolean;
 }
 
+// Your initial state
+export const initialState: CommentState = {
+  commentItems: [],
+  isLoading: false,
+  commentsError: null,
+  commentSuccess: false,
+};
 
-export const commentsState = (state = initState, action) => {
+
+export const commentsState = (state = initialState, action: any) => {
   
   const { payload, type }  = action;
   switch(type) {
@@ -60,7 +70,7 @@ export const commentsState = (state = initState, action) => {
         ...state, 
         commentItems: state.commentItems.map(commentItem => 
           Number(commentItem.postID) === payload.comment.post_id ? 
-          {...commentItem, comments: commentItem.comments.map(comment => comment.id === payload.comment.id  ? 
+          {...commentItem, comments: commentItem.comments.map((comment: any) => comment.id === payload.comment.id  ? 
           {...comment, body: payload.comment.body } : comment  ) } : commentItem
         ),
         commentsError: null, 
@@ -81,7 +91,7 @@ export const commentsState = (state = initState, action) => {
         ...state, 
         commentItems: state.commentItems.map(commentItem => 
           Number(commentItem.postID) === payload.postID ? 
-          {...commentItem, comments: commentItem.comments.filter(({id}) => id !== payload.id ) } : commentItem
+          {...commentItem, comments: commentItem.comments.filter(({id}: any) => id !== payload.id ) } : commentItem
         ),
         commentsError: null, 
         isLoading: false,
