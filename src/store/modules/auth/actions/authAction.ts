@@ -5,21 +5,28 @@ import { BEFORE_STATE, SIGNUP_SUCCESS, SIGNUP_ERROR, LOGIN_SUCCESS, LOGIN_ERROR,
 import  {history} from '../../../../history'
 
 
-export const SignIn = (credentials: string ) => {
+export const SignIn = (credentials: { email: string; password: string }) => {
   return async (dispatch: Function) => {
-      dispatch({ type: BEFORE_STATE }) 
+    dispatch({ type: BEFORE_STATE });
+
     try {
-      const res = await axios.post(`${API_ROUTE}/login`, credentials)
-      let userData = res.data.response
-      localStorage.setItem("token", userData.token)
+      const res = await axios.post(`${API_ROUTE}/login`, credentials);
+      const userData = res.data.response;
+
+      localStorage.setItem('token', userData.token);
       localStorage.setItem('user_data', JSON.stringify(userData));
-      setAuthorizationToken(userData.token)
-      dispatch({ type: LOGIN_SUCCESS, payload: userData })
-    } catch(err: any) {
-      dispatch({ type: LOGIN_ERROR, payload: err.response.data.error })
+
+      setAuthorizationToken(userData.token);
+
+      dispatch({ type: LOGIN_SUCCESS, payload: userData });
+    } catch (err: any) {
+      const error: string = (err.response?.data?.error || 'An error occurred') as string;
+      dispatch({ type: LOGIN_ERROR, payload: error });
     }
-  }
-}
+  };
+};
+
+
 
 export const SignOut = () => {
   return (dispatch: Function) => {
