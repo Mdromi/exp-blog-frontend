@@ -2,7 +2,7 @@ import React from "react";
 
 type InputLabelProps = {
   htmlFor: string;
-  text: string;
+  text?: string; // Make 'text' optional
   className?: string;
 };
 

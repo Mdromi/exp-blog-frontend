@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, {  useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SignIn } from "../../store/modules/auth/actions/authAction";
 import { AnyAction } from "redux";
-import Form from "../../containers/Form";
-import {FormFieldConfig} from "../../containers/Form";
+import Form from "../../containers/Form/Form";
+import {FormFieldConfig} from "../../containers/Form/Form";
 
 
 const loginFields: FormFieldConfig[] = [
@@ -28,19 +28,7 @@ const loginFields: FormFieldConfig[] = [
   },
 ];
 
-const registrationFields: FormFieldConfig[] = [
-  // Additional fields for registration
-  // {
-  //   id: "firstName",
-  //   type: "text",
-  //   name: "firstName",
-  //   label: "First Name",
-  //   autoComplete: "given-name",
-  //   required: true,
-  //   errorKeys: ["Required_firstName"],
-  // },
-  // ... more fields
-];
+
 
 const Login = () => {
   const currentState = useSelector((state: AnyAction) => state.Auth);

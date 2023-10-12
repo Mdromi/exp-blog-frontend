@@ -8,10 +8,10 @@ type RenderErrorProps = {
 };
 
 const RenderError: React.FC<RenderErrorProps> = ({ errorKey, errorName }) => {
-  
   const currentState = useSelector((state: AnyAction) => state.Auth);
   
-  const error = currentState[errorName][errorKey];
+  // Check if currentState[errorName] exists before accessing its properties
+  const error = currentState[errorName] ? currentState[errorName][errorKey] : null;
 
   return error ? <small className="text-error">{error}</small> : null;
 };

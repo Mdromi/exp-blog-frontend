@@ -1,6 +1,4 @@
-import { connect } from "react-redux";
-import { setTheme } from "../store/modules/theme/action/themeAction";
-import ThemeDropDown from "../containers/ThemeDropDown";
+import ThemeDropDown from "../containers/Theme/ThemeDropDown";
 import { AnyAction } from "redux";
 
 const Navigation = () => {
@@ -12,7 +10,13 @@ const Navigation = () => {
   return (
     <div className="navbar bg-base-100 shadow">
       <div className="flex-1">
-        <a href="/"  onClick={handleClick} className="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <a
+          href="/"
+          onClick={handleClick}
+          className="btn btn-ghost normal-case text-xl"
+        >
+          daisyUI
+        </a>
         <div className="form-control">
           <input
             type="text"
@@ -32,6 +36,12 @@ const Navigation = () => {
                 className="info-content hover:bg-info-content hover:text-white rounded-md px-3 py-2 text-sm font-medium"
               >
                 Login
+              </a>
+              <a
+                href="/registion"
+                className="info-content hover:bg-info-content hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+              >
+                Registion
               </a>
             </div>
           </div>
@@ -86,9 +96,5 @@ const Navigation = () => {
     </div>
   );
 };
-
-const mapStateToProps = (state: { theme: string }) => ({
-  theme: state.theme,
-});
 
 export default Navigation;
