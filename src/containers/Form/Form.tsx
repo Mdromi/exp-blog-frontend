@@ -5,8 +5,7 @@ import InputLabel from "./InputLabel";
 import { AnyAction } from "redux";
 import { useSelector } from "react-redux";
 import SubmitButton from "./SubmitButton";
-import ForgotPasswordLink from "./ForgotPasswordLink";
-import LoadingButton from './LoadingButton';
+import LoadingButton from "./LoadingButton";
 
 export type FormFieldConfig = {
   id: string;
@@ -15,6 +14,7 @@ export type FormFieldConfig = {
   label: string;
   autoComplete?: string;
   required?: boolean;
+  placeholder?: string;
   errorKeys: string[];
 };
 
@@ -39,6 +39,8 @@ const Form: React.FC<FormProps> = ({
       acc[key] = "";
       return acc;
     }, currentState[errorName]);
+
+    currentState[errorName] = null;
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,7 +49,7 @@ const Form: React.FC<FormProps> = ({
       [e.target.name]: e.target.value,
     });
 
-    if (Object.values(formData).some((value) => value !== "")) {
+    if (currentState[errorName] != null) {
       clearErrors();
     }
   };
@@ -72,12 +74,12 @@ const Form: React.FC<FormProps> = ({
               onChange={handleChange}
               autoComplete={field.autoComplete}
               required={field.required}
+              className={"invalid:border-red-500"}
               {...field}
             />
           </div>
         </div>
       ))}
-      <ForgotPasswordLink />
 
       <div>
         {currentState.isLoading ? (
@@ -85,14 +87,15 @@ const Form: React.FC<FormProps> = ({
         ) : (
           <SubmitButton
             buttonText={submitButtonText}
-            isDisabled={Object.values(formData).some((value) => value === "")}
+            isDisabled={
+              Object.values(formData).some((value) => value === "") ||
+              currentState[errorName] != null
+            }
           />
         )}
-       
       </div>
     </form>
   );
 };
-
 
 export default Form;

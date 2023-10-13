@@ -34,7 +34,7 @@ const themes = [
 
 const ThemeDropDown = () => {
 
-    const [theme, setTheme] = useState("");
+    const [theme, setTheme] = useState("light");
     const handleThemeChange = (theme: string) => {
         const selectedTheme = theme;
         setTheme(selectedTheme);

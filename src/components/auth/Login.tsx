@@ -5,6 +5,7 @@ import { SignIn } from "../../store/modules/auth/actions/authAction";
 import { AnyAction } from "redux";
 import Form from "../../containers/Form/Form";
 import {FormFieldConfig} from "../../containers/Form/Form";
+import AuthLinksSection from "../../containers/Form/AuthLinksSection";
 
 
 const loginFields: FormFieldConfig[] = [
@@ -15,6 +16,7 @@ const loginFields: FormFieldConfig[] = [
     label: "Email address",
     autoComplete: "email",
     required: true,
+    placeholder: "you@example.com",
     errorKeys: ["Required_email", "Invalid_email", "No_record"],
   },
   {
@@ -24,6 +26,7 @@ const loginFields: FormFieldConfig[] = [
     label: "Password",
     autoComplete: "current-password",
     required: true,
+    placeholder: "*****",
     errorKeys: ["Required_password", "Invalid_password", "Incorrect_password"],
   },
 ];
@@ -35,7 +38,7 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const userLogin = (credentials: { email: string; password: string }) => {
+  const userLogin = (credentials: any) => {
     dispatch<any>(SignIn(credentials));
   };
 
@@ -57,6 +60,8 @@ const Login = () => {
   
   
   useEffect(() => {
+    console.log("currentState", currentState);
+    
     // Redirect if user is authenticated
     if (currentState.isAuthenticated) {
       navigate("/");
@@ -79,6 +84,7 @@ const Login = () => {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <Form fields={loginFields} onSubmit={handleLoginSubmit} errorName="loginError" submitButtonText="Sign in" />
+        <AuthLinksSection authStatus="login" />
       </div>
     </div>
   );

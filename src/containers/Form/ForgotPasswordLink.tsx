@@ -5,7 +5,7 @@ import React from "react";
 const ForgotPasswordLink: React.FC = () => (
   <div className="text-sm text-right mx-auto my-0">
     <a
-      href="/password-recovery"
+      href="/forgotpassword"
       className="font-semibold text-primary hover:primary-focus"
     >
       Forgot password?

@@ -11,7 +11,7 @@ const reducer = combineReducers({
   PostsState: postsState,
   LikesState: likesState,
   CommentsState: commentsState,
-  Theme: themeReducer,
+  // Theme: themeReducer,
 })
 
 export default reducer

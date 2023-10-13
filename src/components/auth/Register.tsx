@@ -1,44 +1,94 @@
-// ... other imports
-import { useForm } from "../../hook/useForm";
-import {FormFieldConfig} from "../../containers/Form/Form";
+import { AnyAction } from "redux";
+import Form, { FormFieldConfig } from "../../containers/Form/Form";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { SignUp } from "../../store/modules/auth/actions/authAction";
+import AuthLinksSection from "../../containers/Form/AuthLinksSection";
+
 
 const registrationFields: FormFieldConfig[] = [
-    // Additional fields for registration
-    // {
-    //   id: "firstName",
-    //   type: "text",
-    //   name: "firstName",
-    //   label: "First Name",
-    //   autoComplete: "given-name",
-    //   required: true,
-    //   errorKeys: ["Required_firstName"],
-    // },
-    // ... more fields
-  ];
+  {
+    id: "username",
+    type: "username",
+    name: "username",
+    label: "username",
+    autoComplete: "username",
+    required: true,
+    placeholder: "unique username",
+    errorKeys: ["Required_email", "Taken_username", ""],
+  },
+  {
+    id: "email",
+    type: "email",
+    name: "email",
+    label: "Email address",
+    autoComplete: "email",
+    required: true,
+    placeholder: "you@example.com",
+    errorKeys: ["Required_email", "Invalid_email", "Taken_email"],
+  },
+  {
+    id: "password",
+    type: "password",
+    name: "password",
+    label: "Password",
+    autoComplete: "current-password",
+    required: true,
+    placeholder: "******",
+    errorKeys: ["Required_password", "Invalid_password", "Incorrect_password"],
+  },
+];
 
 const Registration = () => {
+  const currentState = useSelector((state: AnyAction) => state.Auth);
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
 
-
-  const { formData, handleChange, clearErrors } = useForm({
-    initialValues: {},
-    errorKeys: ['Required_firstName', 'Invalid_firstName', 'No_record'],
-  });
-
-  const handleRegistrationSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    // Access form data
-    const firstName = formData.firstName;
-    const lastName = formData.lastName;
-    const email = formData.email;
-    const password = formData.password;
-
-    // Perform registration logic
-    // ...
-
-    // Clear errors after submission
-    clearErrors();
+  const addUser = (credentials: any) => {
+    dispatch<any>(SignUp(credentials));
   };
 
-  // ... rest of the component
+  
+  const handleRegisterSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+   
+    // Access form data
+    const formData = new FormData(e.currentTarget);
+    const username = formData.get("username") as string;
+    const email = formData.get("email") as string; 
+    const password = formData.get("password") as string; 
+
+    addUser({
+      username: username,
+      email: email,
+      password: password,
+    })
+  };
+
+  if(currentState.authSuccess){
+    navigate("/login");
+  }
+ 
+  console.log("currentState", currentState)
+  
+  return (
+    <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        <img
+          className="mx-auto h-10 w-auto"
+          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+          alt="Your Company"
+        />
+        <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight neutral">
+          Signup on your account
+        </h2>
+      </div>
+      <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <Form fields={registrationFields} onSubmit={handleRegisterSubmit} errorName="signupError" submitButtonText="Sign up" />
+        <AuthLinksSection authStatus="signup" />
+      </div>
+    </div>
+  )
 };
+
+export default Registration
