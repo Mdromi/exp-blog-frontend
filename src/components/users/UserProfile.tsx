@@ -10,14 +10,9 @@ import GenericInput from "./GenericInput";
 import generateSections from "./section";
 
 const Profile: React.FC = () => {
-  const dispatch = useDispatch();
   const isAuthenticated = useSelector(
     (state: AnyAction) => state.Auth.isAuthenticated
   );
-
-  const handleLogout = () => {
-    dispatch<any>(SignOut());
-  };
 
   const sections = generateSections();
   return (
