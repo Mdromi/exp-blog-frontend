@@ -47,7 +47,10 @@ const SignedInLinks: React.FC = () => {
       href: userProfile,
       onClick: (e: React.MouseEvent) => handleClick(e, userProfile),
     },
-    { label: "Settings" },
+    {
+      label: "Dashboard",
+      onClick: (e: React.MouseEvent) => handleClick(e, "/dashboard"),
+    },
     { label: "Logout", onClick: logout },
   ];
 

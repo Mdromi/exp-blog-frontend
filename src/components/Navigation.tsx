@@ -22,7 +22,7 @@ const Navigation = () => {
   };
 
   return (
-    <div className="navbar bg-base-100 shadow">
+    <div className="navbar bg-base-100 shadow sticky top-0 z-50">
       <div className="flex-1">
       <LogoLink onClick={handleClick} />
       <SearchInput />

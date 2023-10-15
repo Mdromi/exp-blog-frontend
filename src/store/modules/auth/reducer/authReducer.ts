@@ -72,6 +72,7 @@ const authReducer = (state = initState, action: any) => {
         ...state,
         isLoading: false,
         currentUser: action.payload,
+        profileID: action.payload.profileID,
         isAuthenticated: !isEmpty(action.payload),
         loginError: null,
         signupError: null,

@@ -63,7 +63,10 @@ const Login = () => {
     console.log("currentState", currentState);
     
     // Redirect if user is authenticated
-    if (currentState.isAuthenticated) {
+    if(currentState.profileID === 0) {
+      navigate("/create-profile");
+    }
+    else if (currentState.isAuthenticated) {
       navigate("/");
     }
   }, [currentState.isAuthenticated, navigate]);
