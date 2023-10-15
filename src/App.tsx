@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useEffect } from "react";
 import "./App.css";
 import AppRoutes from "./Route";
@@ -26,9 +27,29 @@ function App() {
     dispatch(setCurrentUserAction(decodedUser));
     }
   }, [dispatch]);
+=======
+import { useEffect } from 'react';
+import './App.css';
+import  AppRoutes from './Route';
+import { useDispatch } from 'react-redux';
+import { setTheme } from './store/modules/theme/action/themeAction';
+import Navigation from './components/Navigation';
 
+function App() {
+  const dispatch = useDispatch();
+>>>>>>> 8947cd2743747b3cf99989f3a5e0f3f638eb4201
+
+  useEffect(() => {
+    // Dispatch the initial theme
+    dispatch(setTheme('light')); // or your default theme
+  }, [dispatch]);
+  
   return (
     <div className="App">
+<<<<<<< HEAD
+=======
+      <Navigation />
+>>>>>>> 8947cd2743747b3cf99989f3a5e0f3f638eb4201
       <AppRoutes />
     </div>
   );

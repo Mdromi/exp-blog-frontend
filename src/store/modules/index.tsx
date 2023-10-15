@@ -11,7 +11,11 @@ const reducer = combineReducers({
   PostsState: postsState,
   LikesState: likesState,
   CommentsState: commentsState,
+<<<<<<< HEAD
   // Theme: themeReducer,
+=======
+  Theme: themeReducer,
+>>>>>>> 8947cd2743747b3cf99989f3a5e0f3f638eb4201
 })
 
 export default reducer

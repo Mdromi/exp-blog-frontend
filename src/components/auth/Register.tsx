@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { AnyAction } from "redux";
 import Form, { FormFieldConfig } from "../../containers/Form/Form";
 import { useSelector, useDispatch } from "react-redux";
@@ -92,3 +93,8 @@ const Registration = () => {
 };
 
 export default Registration
+=======
+const Register = () => {
+    
+}
+>>>>>>> 8947cd2743747b3cf99989f3a5e0f3f638eb4201

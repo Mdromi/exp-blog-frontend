@@ -1,11 +1,20 @@
+<<<<<<< HEAD
 import React, {  useEffect } from "react";
+=======
+import React, { useState, useEffect } from "react";
+>>>>>>> 8947cd2743747b3cf99989f3a5e0f3f638eb4201
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SignIn } from "../../store/modules/auth/actions/authAction";
 import { AnyAction } from "redux";
+<<<<<<< HEAD
 import Form from "../../containers/Form/Form";
 import {FormFieldConfig} from "../../containers/Form/Form";
 import AuthLinksSection from "../../containers/Form/AuthLinksSection";
+=======
+import Form from "../../containers/Form";
+import {FormFieldConfig} from "../../containers/Form";
+>>>>>>> 8947cd2743747b3cf99989f3a5e0f3f638eb4201
 
 
 const loginFields: FormFieldConfig[] = [
@@ -16,7 +25,10 @@ const loginFields: FormFieldConfig[] = [
     label: "Email address",
     autoComplete: "email",
     required: true,
+<<<<<<< HEAD
     placeholder: "you@example.com",
+=======
+>>>>>>> 8947cd2743747b3cf99989f3a5e0f3f638eb4201
     errorKeys: ["Required_email", "Invalid_email", "No_record"],
   },
   {
@@ -26,19 +38,42 @@ const loginFields: FormFieldConfig[] = [
     label: "Password",
     autoComplete: "current-password",
     required: true,
+<<<<<<< HEAD
     placeholder: "*****",
+=======
+>>>>>>> 8947cd2743747b3cf99989f3a5e0f3f638eb4201
     errorKeys: ["Required_password", "Invalid_password", "Incorrect_password"],
   },
 ];
 
+<<<<<<< HEAD
 
+=======
+const registrationFields: FormFieldConfig[] = [
+  // Additional fields for registration
+  // {
+  //   id: "firstName",
+  //   type: "text",
+  //   name: "firstName",
+  //   label: "First Name",
+  //   autoComplete: "given-name",
+  //   required: true,
+  //   errorKeys: ["Required_firstName"],
+  // },
+  // ... more fields
+];
+>>>>>>> 8947cd2743747b3cf99989f3a5e0f3f638eb4201
 
 const Login = () => {
   const currentState = useSelector((state: AnyAction) => state.Auth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+<<<<<<< HEAD
   const userLogin = (credentials: any) => {
+=======
+  const userLogin = (credentials: { email: string; password: string }) => {
+>>>>>>> 8947cd2743747b3cf99989f3a5e0f3f638eb4201
     dispatch<any>(SignIn(credentials));
   };
 
@@ -60,6 +95,7 @@ const Login = () => {
   
   
   useEffect(() => {
+<<<<<<< HEAD
     console.log("currentState", currentState);
     
     // Redirect if user is authenticated
@@ -67,6 +103,10 @@ const Login = () => {
       navigate("/create-profile");
     }
     else if (currentState.isAuthenticated) {
+=======
+    // Redirect if user is authenticated
+    if (currentState.isAuthenticated) {
+>>>>>>> 8947cd2743747b3cf99989f3a5e0f3f638eb4201
       navigate("/");
     }
   }, [currentState.isAuthenticated, navigate]);
@@ -87,7 +127,10 @@ const Login = () => {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <Form fields={loginFields} onSubmit={handleLoginSubmit} errorName="loginError" submitButtonText="Sign in" />
+<<<<<<< HEAD
         <AuthLinksSection authStatus="login" />
+=======
+>>>>>>> 8947cd2743747b3cf99989f3a5e0f3f638eb4201
       </div>
     </div>
   );

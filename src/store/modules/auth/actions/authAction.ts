@@ -1,4 +1,5 @@
 import API_ROUTE from "../../../../apiRoute";
+<<<<<<< HEAD
 import axios from "axios";
 import setAuthorizationToken from "../../../../authorization/authorization";
 import {
@@ -27,6 +28,15 @@ import { Dispatch } from 'redux';
 // import { useNavigate } from 'react-router-dom';
 
 export const SignIn = (credentials: string) => {
+=======
+import axios from 'axios'
+import setAuthorizationToken  from "../../../../authorization/authorization";
+import { BEFORE_STATE, SIGNUP_SUCCESS, SIGNUP_ERROR, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT_SUCCESS, UPDATE_USER_AVATAR, UPDATE_USER_SUCCESS, UPDATE_USER_ERROR, UPDATE_USER_AVATAR_ERROR, BEFORE_AVATAR_STATE, BEFORE_USER_STATE, FORGOT_PASSWORD_SUCCESS, FORGOT_PASSWORD_ERROR, RESET_PASSWORD_SUCCESS, RESET_PASSWORD_ERROR, DELETE_USER_SUCCESS, DELETE_USER_ERROR } from '../authTypes/index'
+import  {history} from '../../../../history'
+
+
+export const SignIn = (credentials: { email: string; password: string }) => {
+>>>>>>> 8947cd2743747b3cf99989f3a5e0f3f638eb4201
   return async (dispatch: Function) => {
     dispatch({ type: BEFORE_STATE });
 
@@ -34,19 +44,33 @@ export const SignIn = (credentials: string) => {
       const res = await axios.post(`${API_ROUTE}/login`, credentials);
       const userData = res.data.response;
 
+<<<<<<< HEAD
       localStorage.setItem("token", userData.token);
       localStorage.setItem("user_data", JSON.stringify(userData));
+=======
+      localStorage.setItem('token', userData.token);
+      localStorage.setItem('user_data', JSON.stringify(userData));
+>>>>>>> 8947cd2743747b3cf99989f3a5e0f3f638eb4201
 
       setAuthorizationToken(userData.token);
 
       dispatch({ type: LOGIN_SUCCESS, payload: userData });
     } catch (err: any) {
+<<<<<<< HEAD
       const error: string = (err.response?.data?.error ||
         "An error occurred") as string;
+=======
+      const error: string = (err.response?.data?.error || 'An error occurred') as string;
+>>>>>>> 8947cd2743747b3cf99989f3a5e0f3f638eb4201
       dispatch({ type: LOGIN_ERROR, payload: error });
     }
   };
 };
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 8947cd2743747b3cf99989f3a5e0f3f638eb4201
 
 export const SignOut = () => {
   return (dispatch: Function) => {

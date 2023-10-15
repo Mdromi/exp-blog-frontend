@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 import React, {ReactNode} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -15,12 +16,17 @@ const Layout: React.FC<{ children: ReactNode }> = ({ children }) => (
     {children}
   </div>
 );
+=======
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './components/auth/Login';
+>>>>>>> 8947cd2743747b3cf99989f3a5e0f3f638eb4201
 
 
 const AppRoutes = () => {
   return (
     <Router>
       <Routes>
+<<<<<<< HEAD
         <Route
           path="/*"
           element={
@@ -35,10 +41,25 @@ const AppRoutes = () => {
             </Layout>
           }
         />
+=======
+        <Route path="/login" element={<Login/>} />
+        {/* Uncomment the following lines if you intend to use these components */}
+        {/* <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Register />} />
+        <Route path="/createpost" element={<CreatePost />} />
+        <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/resetpassword/:token" element={<ResetPassword />} />
+        <Route path="/posts/:id" element={<PostDetails />} />
+        <Route path="/authposts" element={<AuthPosts />} /> */}
+>>>>>>> 8947cd2743747b3cf99989f3a5e0f3f638eb4201
       </Routes>
     </Router>
   );
 };
 
 export default AppRoutes;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8947cd2743747b3cf99989f3a5e0f3f638eb4201
