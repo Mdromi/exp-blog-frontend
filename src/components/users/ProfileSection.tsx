@@ -10,9 +10,9 @@ interface SectionProps {
 const ProfileSection: React.FC<SectionProps> = ({ title, description, children, className }) => {
     const inputClasses = `mt-8 grid ${className || ''}`;
   return (
-    <div className="border-b border-gray-900/10 pb-12">
-      <h2 className="text-base font-semibold leading-7 text-gray-900">{title}</h2>
-      <p className="mt-1 text-sm leading-6 text-gray-600">{description}</p>
+    <div className="border-b border-accent-content/10 pb-12">
+      <h2 className="text-base font-semibold leading-7 text-accent-content">{title}</h2>
+      <p className="mt-1 text-sm leading-6 text-base-200t">{description}</p>
 
       <div className={inputClasses}>
         {children}

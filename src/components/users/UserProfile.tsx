@@ -1,7 +1,6 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import { AnyAction } from "redux";
-import { SignOut } from "../../store/modules/auth/actions/authAction";
 import PhotoInput from "./PhotoInput";
 import CoverPhotoInput from "./CoverPhotoInput";
 import SaveCancelButtons from "./SaveCancelButtons";
@@ -19,7 +18,7 @@ const Profile: React.FC = () => {
     <div className="flex justify-center items-center mt-6 ">
       {isAuthenticated ? (
         <div className="">
-          <form className="w-75 mt-6 p-10 rounded-md border border-gray-400">
+          <form className="w-75 mt-6 p-10 rounded-md border border-base-300">
             <div className="space-y-12">
               <PhotoInput id="photo" label="Photo" />
               <CoverPhotoInput id="cover-photo" label="Cover Photo" />

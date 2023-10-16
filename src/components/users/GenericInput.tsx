@@ -34,8 +34,8 @@ const FormField: React.FC<
   } & InputField
 > = ({ id, name, autoComplete, placeholder, type, className, rows }) => {
   const baseClass = `
-    block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-inset ring-gray-300
-    placeholder:text-gray-400 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6
+    block w-full rounded-md border-0 bg-transparent py-1.5 text-accent-content shadow-sm ring-inset ring-base-300
+    placeholder:text-base-300 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6
   `;
 
   const inputClass = className ? `${baseClass} ${className}` : baseClass;
@@ -49,7 +49,7 @@ const FormField: React.FC<
           name={name}
           className={`
             ${inputClass}
-            text-sm placeholder-gray-500 pl-10 pr-4 rounded-md border border-gray-400
+            text-sm placeholder-accent-content pl-10 pr-4 rounded-md border border-base-300
             w-full py-2 focus:outline-none focus:border-blue-400
           `}
           placeholder={placeholder}
@@ -88,7 +88,7 @@ const TextInput: React.FC<InputField> = ({ id, name, autoComplete, placeholder, 
     <div className="col-span-full">
       <label
         htmlFor={id}
-        className="block text-sm font-medium leading-6 text-gray-900"
+        className="block text-sm font-medium leading-6 text-accent-content"
       >
         {label}
       </label>
@@ -99,7 +99,7 @@ const TextInput: React.FC<InputField> = ({ id, name, autoComplete, placeholder, 
           id={id}
           autoComplete={autoComplete}
           placeholder={placeholder}
-          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          className="block w-full rounded-md border-0 py-1.5 text-accent-content shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-base-content focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           rows={multiline ? 3 : undefined}
         />
       </div>
@@ -118,13 +118,13 @@ const UsernameInput: React.FC<InputField> = ({
     <div className="sm:col-span-4">
       <label
         htmlFor={id}
-        className="block text-sm font-medium leading-6 text-gray-900"
+        className="block text-sm font-medium leading-6 text-accent-content"
       >
         {label}
       </label>
       <div className="mt-2">
-        <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
-          <span className="flex select-none items-center pl-3 text-gray-500 sm:text-sm">
+        <div className="flex  rounded-md shadow-sm ring-1 ring-inset ring-base-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md">
+          <span className="flex font-bold select-none items-center pl-3 text-accent-content sm:text-sm">
             medium.com/
           </span>
           <FormField
@@ -133,7 +133,7 @@ const UsernameInput: React.FC<InputField> = ({
             id={id}
             autoComplete={autoComplete}
             placeholder={placeholder}
-            className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+            className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-	base-100 placeholder:text-base-content focus:ring-0 sm:text-sm sm:leading-6"
           />
         </div>
       </div>
@@ -154,7 +154,7 @@ const ProfileInputField: React.FC<InputField> = ({
     <div className="sm:col-span-3">
       <label
         htmlFor={id}
-        className="block text-sm font-medium leading-6 text-gray-900"
+        className="block text-sm font-medium leading-6 text-accent-content"
       >
         {label}
       </label>
@@ -165,7 +165,7 @@ const ProfileInputField: React.FC<InputField> = ({
           id={id}
           autoComplete={autoComplete}
           placeholder={placeholder}
-          className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+          className="block w-full  rounded-md border-0 py-1.5 text-base-content shadow-sm ring-1 ring-inset ring-base-300 placeholder:text-base-content focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           rows={multiline ? 3 : undefined}
         />
       </div>
@@ -183,20 +183,20 @@ const SocialLinkInput: React.FC<InputField> = ({
       <div className="flex flex-col mb-5">
         <label
           htmlFor={name}
-          className="mb-1 text-xs tracking-wide text-gray-600"
+          className="mb-1 text-xs tracking-wide text-accent-content"
         >
           {label}
         </label>
         <div className="relative">
-          <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
-            <LinkIcon className="h-5 w-5 text-gray-300" aria-hidden="true" />
+          <div className="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-accent-content">
+            <LinkIcon className="h-5 w-5 text-base-content" aria-hidden="true" />
           </div>
           <FormField
             id={name}
             name={name}
             type="url"
             placeholder={placeholder}
-            className="text-sm placeholder-gray-500 pl-10 pr-4 rounded-md border border-gray-400 w-full py-2 ring-1 focus:ring-2 focus:outline-none focus:border-blue-400"
+            className="text-sm bg-transparent placeholder:text-base-content pl-10 pr-4 rounded-md border border-base-300 w-full py-2 ring-1 focus:ring-2 focus:outline-none focus:border-blue-400"
           />
         </div>
       </div>
