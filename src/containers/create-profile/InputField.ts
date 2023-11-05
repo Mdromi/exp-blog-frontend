@@ -8,3 +8,7 @@ export interface InputField {
   multiline?: boolean;
   key?: number;
 }
+
+export interface InputFieldWithClassName extends InputField {
+  className?: string;
+}

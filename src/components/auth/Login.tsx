@@ -1,8 +1,6 @@
-import React, {  useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { SignIn } from "../../store/modules/auth/actions/authAction";
-import { AnyAction } from "redux";
 import Form from "../../containers/Form/Form";
 import {FormFieldConfig} from "../../containers/Form/Form";
 import AuthLinksSection from "../../containers/Form/AuthLinksSection";
@@ -34,9 +32,7 @@ const loginFields: FormFieldConfig[] = [
 
 
 const Login = () => {
-  const currentState = useSelector((state: AnyAction) => state.Auth);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const userLogin = (credentials: any) => {
     dispatch<any>(SignIn(credentials));
@@ -58,18 +54,6 @@ const Login = () => {
     });
   };
   
-  
-  useEffect(() => {
-    console.log("currentState", currentState);
-    
-    // Redirect if user is authenticated
-    if(currentState.profileID === 0) {
-      navigate("/create-profile");
-    }
-    else if (currentState.isAuthenticated) {
-      navigate("/");
-    }
-  }, [currentState.isAuthenticated, navigate]);
 
 
   return (

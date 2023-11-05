@@ -124,6 +124,6 @@ const generateSections = (): Section[] => {
   ];
 
   return sections;
-}
-export default generateSections
+};
 
+export default generateSections;

@@ -8,14 +8,14 @@ import ProfileSection from "./ProfileSection";
 import GenericInput from "./GenericInput";
 import generateSections from "./section";
 
-const Profile: React.FC = () => {
+const CreateProfile: React.FC = () => {
   const isAuthenticated = useSelector(
     (state: AnyAction) => state.Auth.isAuthenticated
   );
 
   const sections = generateSections();
   return (
-    <div className="flex justify-center items-center mt-6 ">
+    <div className="flex w-75 justify-center items-center mt-6 ">
       {isAuthenticated ? (
         <div className="">
           <form className="w-75 mt-6 p-10 rounded-md border border-base-300">
@@ -45,4 +45,4 @@ const Profile: React.FC = () => {
   );
 };
 
-export default Profile;
+export default CreateProfile;
