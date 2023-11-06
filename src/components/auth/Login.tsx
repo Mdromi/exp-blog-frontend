@@ -1,5 +1,7 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, {  useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { AnyAction } from "redux";
 import { SignIn } from "../../store/modules/auth/actions/authAction";
 import Form from "../../containers/Form/Form";
 import {FormFieldConfig} from "../../containers/Form/Form";
@@ -32,11 +34,22 @@ const loginFields: FormFieldConfig[] = [
 
 
 const Login = () => {
+  const currentState = useSelector((state: AnyAction) => state.Auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const userLogin = (credentials: any) => {
     dispatch<any>(SignIn(credentials));
   };
+
+  useEffect(() => {
+    console.log("currentState", currentState);
+
+    // Redirect if user is authenticated
+    if (currentState.isAuthenticated) {
+      navigate("/");
+    }
+  }, [currentState.isAuthenticated, navigate]);
 
   const handleLoginSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // Prevent the default form submission behavior

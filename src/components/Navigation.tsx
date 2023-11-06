@@ -13,12 +13,14 @@ const Navigation = () => {
   const currentState = useSelector((state: AnyAction) => state);
   const { isAuthenticated, profile } = currentState.Auth;
 
-  useEffect(() => {
-    // If authenticated and no profile, automatically navigate to create-profile
-    if (isAuthenticated && !profile) {
-      navigate("/create-profile");
-    }
-  }, [isAuthenticated, profile, navigate]);
+  console.log("currentState", currentState);
+  
+  // useEffect(() => {
+  //   // If authenticated and no profile, automatically navigate to create-profile
+  //   if (isAuthenticated && !profile) {
+  //     navigate("/create-profile");
+  //   }
+  // }, [isAuthenticated, profile, navigate]);
 
   const handleClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     event.preventDefault();

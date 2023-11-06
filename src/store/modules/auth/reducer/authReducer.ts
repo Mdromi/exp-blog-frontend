@@ -21,9 +21,14 @@ import {
 } from "../authTypes";
 import isEmpty from "lodash/isEmpty";
 
+// Retrieve user_data from localStorage
+const storedUserData = localStorage.getItem('user_data');
+console.log("storedUserData", storedUserData);
+
+
 export const initState = {
   isAuthenticated: false,
-  currentUser: {},
+  currentUser: storedUserData ? JSON.parse(storedUserData) : {}, // Use stored value or empty object
   isLoading: false,
   isLoadingAvatar: false,
   isUpdatingUser: false,
@@ -32,6 +37,7 @@ export const initState = {
 };
 
 const authReducer = (state = initState, action: any) => {
+  
   switch (action.type) {
     // This is the state to set when the button is click and we are waiting for response
     case BEFORE_STATE:
