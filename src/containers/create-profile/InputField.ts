@@ -24,6 +24,12 @@ export interface FormFieldProps {
   onChange?: (value: string) => void;
 }
 
+
+export type PhotoInfo = {
+  data: Blob | null;
+  name: string | null;
+};
+
 export interface InputFieldWithClassName extends InputField {
   className?: string;
 }

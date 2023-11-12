@@ -1,3 +1,5 @@
+import GetStoredUserData from "../../utils/helperFunction/GetStoredUserData";
+
 interface Field {
   type: string;
   id: string;
@@ -8,6 +10,8 @@ interface Field {
   multiline?: boolean;
   value?: string;
   isDisabled?: boolean;
+  required?: boolean,
+  errorKeys?: Array<string>,
 }
 
 interface Section {
@@ -17,17 +21,7 @@ interface Section {
   fields: Field[];
 }
 
-// Retrieve user_data from localStorage
-const storedUserDataString = localStorage?.getItem('user_data');
-
-let storedUserData: any;
-try {
-  storedUserData = storedUserDataString ? JSON.parse(storedUserDataString) : null;
-} catch (error) {
-  console.error("Error parsing storedUserData:", error);
-  storedUserData = null;
-}
-
+const storedUserData = GetStoredUserData();
 
 const generateSections = (): Section[] => {
   const sections: Section[] = [
@@ -46,6 +40,8 @@ const generateSections = (): Section[] => {
           label: "Username",
           value: storedUserData.username,
           isDisabled: true,
+          required: true,
+          errorKeys: ["user_id"],
         },
         {
           type: "text",
@@ -54,27 +50,31 @@ const generateSections = (): Section[] => {
           autoComplete: "off",
           placeholder: "Write a few words about yourself.",
           label: "Short Title",
+          required: true,
+          errorKeys: ["Required_title", "Title_length"],
         },
         {
           type: "text",
-          id: "about",
-          name: "about",
+          id: "bio",
+          name: "bio",
           autoComplete: "off",
           placeholder: "Write a few sentences about yourself.",
-          label: "About",
+          label: "Bio",
           multiline: true,
+          required: true,
+          errorKeys: ["Required_bio", "Bio_length"],
         },
         {
-          type: "photo",
-          id: "photo",
-          name: "photo",
-          label: "Photo",
+          type: "profilePic",
+          id: "profilePic",
+          name: "profilePic",
+          label: "Profile Pic",
         },
         {
-          type: "cover-photo",
-          id: "cover-photo",
-          name: "cover-photo",
-          label: "Cover photo",
+          type: "coverPic",
+          id: "coverPic",
+          name: "coverPic",
+          label: "Cover Pic",
         },
       ],
     },
@@ -85,19 +85,13 @@ const generateSections = (): Section[] => {
       fields: [
         {
           type: "profile",
-          id: "first-name",
-          name: "first-name",
+          id: "fullName",
+          name: "fullName",
           autoComplete: "off",
-          placeholder: "Enter Your First Name",
-          label: "First name",
-        },
-        {
-          type: "profile",
-          id: "last-name",
-          name: "last-name",
-          autoComplete: "off",
-          placeholder: "Enter Your Last Name",
-          label: "Last name",
+          placeholder: "Enter Your Full Name",
+          label: "Full name",
+          required: true,
+          errorKeys: ["Required_name", "Name_length"],
         },
         {
           type: "profile",
@@ -108,6 +102,8 @@ const generateSections = (): Section[] => {
           label: "Email",
           value: storedUserData.email,
           isDisabled: true,
+          required: true,
+          errorKeys: ["Required_email", "Invalid_email"],
         },
       ],
     },

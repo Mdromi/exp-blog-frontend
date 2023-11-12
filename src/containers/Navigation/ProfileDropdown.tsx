@@ -1,4 +1,5 @@
 import React from "react";
+import AvatarPreview from "../../components/profile/AvatarPreview";
 
 type DropdownItem = {
   label: string;
@@ -17,11 +18,7 @@ const ProfileDropdown: React.FC<DropdownProps> = ({
   items,
 }) => (
   <div className="dropdown dropdown-end">
-    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-      <div className="w-10 rounded-full">
-        <img src={avatarSrc} alt="avatar" />
-      </div>
-    </label>
+    <AvatarPreview previewImage={avatarSrc} />
     <ul
       tabIndex={0}
       className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"

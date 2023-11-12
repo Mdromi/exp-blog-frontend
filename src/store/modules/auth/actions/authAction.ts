@@ -1,4 +1,4 @@
-import API_ROUTE from "../../../../apiRoute";
+import routes from "../../../../apiRoute";
 import axios from "axios";
 import setAuthorizationToken from "../../../../authorization/authorization";
 import {
@@ -22,9 +22,8 @@ import {
   DELETE_USER_ERROR,
   SET_CURRENT_USER
 } from "../authTypes/index";
-import { Dispatch } from 'redux';
-// import  {history} from '../../../../history'
-// import { useNavigate } from 'react-router-dom';
+
+const API_ROUTE = routes.API_ROUTE;
 
 export const SignIn = (credentials: string) => {
   return async (dispatch: Function) => {

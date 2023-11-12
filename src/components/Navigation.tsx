@@ -13,7 +13,7 @@ const Navigation = () => {
   const currentState = useSelector((state: AnyAction) => state);
   const { isAuthenticated, profile } = currentState.Auth;
 
-  console.log("currentState", currentState);
+  // console.log("currentState", currentState);
   
   // useEffect(() => {
   //   // If authenticated and no profile, automatically navigate to create-profile

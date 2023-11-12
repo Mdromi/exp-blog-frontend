@@ -1,3 +1,4 @@
+import { AnyAction } from "redux";
 import {
   SIGNUP_SUCCESS,
   SIGNUP_ERROR,
@@ -17,29 +18,33 @@ import {
   RESET_PASSWORD_ERROR,
   DELETE_USER_SUCCESS,
   DELETE_USER_ERROR,
-  SET_CURRENT_USER
+  SET_CURRENT_USER,
 } from "../authTypes";
 import isEmpty from "lodash/isEmpty";
 
 // Retrieve user_data from localStorage
-const storedUserData = localStorage.getItem('user_data');
-console.log("storedUserData", storedUserData);
-
+const storedUserData = localStorage.getItem("user_data");
+let currentUser;
+try {
+  currentUser = storedUserData ? JSON.parse(storedUserData) : {};
+} catch (error) {
+  console.error("Error parsing storedUserData:", error);
+  currentUser = {};
+}
 
 export const initState = {
   isAuthenticated: false,
-  currentUser: storedUserData ? JSON.parse(storedUserData) : {}, // Use stored value or empty object
+  currentUser: currentUser, // Use stored value or empty object
   isLoading: false,
   isLoadingAvatar: false,
   isUpdatingUser: false,
   authError: null,
   authSuccess: null,
+  blobData: null,
 };
 
-const authReducer = (state = initState, action: any) => {
-  
+const authReducer = (state = initState, action: AnyAction) => {
   switch (action.type) {
-    // This is the state to set when the button is click and we are waiting for response
     case BEFORE_STATE:
       return {
         ...state,

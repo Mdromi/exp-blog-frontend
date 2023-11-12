@@ -6,7 +6,7 @@ import Registration from './components/auth/Register';
 import Navigation from './components/Navigation';
 import Homepage from './pages/Homepage/Homepage';
 import Dashboard from './containers/Dashboard/Dashboard';
-import CreateProfile from './containers/create-profile/CreateProfile';
+import CreateProfileComponent from './containers/create-profile/CreateProfileComponent';
 
 const Layout: React.FC<{ children: ReactNode }> = ({ children }) => (
   <div>
@@ -29,7 +29,7 @@ const AppRoutes = () => {
                 <Route path="login" element={<Login />} />
                 <Route path="signup" element={<Registration />} />
                 <Route path="dashboard" element={<Dashboard />} />
-                <Route path="create-profile" element={<CreateProfile />} />
+                <Route path="create-profile" element={<CreateProfileComponent />} />
               </Routes>
             </Layout>
           }

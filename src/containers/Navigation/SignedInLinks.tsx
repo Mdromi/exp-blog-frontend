@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { SignOut } from "../../store/modules/auth/actions/authAction";
 import { AnyAction } from "redux";
-import Default from "../../assets/default.png";
 import NavItem from "./NavItem";
 import ProfileDropdown from "./ProfileDropdown";
 import NotificationButton from "./NotificationButton";
+import GetImagePreview from "../../utils/helperFunction/GetImagePreview";
 
 const SignedInLinks: React.FC = () => {
   const currentState = useSelector((state: AnyAction) => state);
@@ -18,13 +18,7 @@ const SignedInLinks: React.FC = () => {
   const logoutUser = () => {
     dispatch<any>(SignOut());
   };
-
-  let imagePreview = null;
-  if (currentUser && currentUser.avatar_path) {
-    imagePreview = currentUser.avatar_path;
-  } else {
-    imagePreview = Default;
-  }
+  const previewImage = GetImagePreview(currentUser);
 
   const handleClick = (e: React.MouseEvent, destination: string) => {
     e.preventDefault();
@@ -86,7 +80,7 @@ const SignedInLinks: React.FC = () => {
       />
 
       <ProfileDropdown
-        avatarSrc={imagePreview}
+        avatarSrc={previewImage}
         userProfileHref={userProfile}
         items={profileDropDownItems}
       />
